@@ -7,7 +7,11 @@ import {authCheck} from './endpoints/auth.js';
 
 import {getDungeons, getWorldBosses, getEnemies} from './endpoints/combat.js';
 import {inspectItem, itemMarketHistory, searchItem} from "./endpoints/items.js";
+
+import {getGuildConquestView, getGuildConquestZoneInspection} from "./endpoints/guild.js";
+import {getShrineProgress} from "./endpoints/shrine.js";
 import {ItemMarketHistoryType} from "./types.js";
+import {getGuildInformation} from "./endpoints/guild.js";
 
 export * from './types.js';
 
@@ -31,11 +35,25 @@ class IdleMMO {
     async searchItem(query = {}) {
         return searchItem(query);
     }
-    async inspectItem(hashedId = "") {
-        return inspectItem(hashedId);
+    async inspectItem(hashed_id = "") {
+        return inspectItem(hashed_id);
     }
-    async itemMarketHistory(hashedId = "", options: {tier: number, type: ItemMarketHistoryType}) {
-        return itemMarketHistory(hashedId, options);
+    async itemMarketHistory(hashed_id: string, tier: number, type: ItemMarketHistoryType = "listings") {
+        return itemMarketHistory(hashed_id, tier, type);
+    }
+
+    async getGuildInformation(id: number) {
+        return getGuildInformation(id);
+    }
+    async getGuildConquestView(season_number?: number) {
+        return getGuildConquestView(season_number);
+    }
+    async getGuildConquestZoneInspection(zone_id: number, season_number?: number) {
+        return getGuildConquestZoneInspection(zone_id, season_number);
+    }
+
+    async getShrineProgress() {
+        return getShrineProgress();
     }
 
 }
@@ -54,9 +72,14 @@ export {
     searchItem,
     inspectItem,
     itemMarketHistory,
+
+    getGuildInformation,
+    getGuildConquestView,
+    getGuildConquestZoneInspection,
+
+    getShrineProgress
 };
 export default idlemmo
 
 //configure("");
-//const hashedId = (await searchItem({query: "branch"})).items[0].hashed_id;
-//console.log(await itemMarketHistory(hashedId, {tier: 1, type: "listings"}))
+//console.log(await getGuildConquestZoneInspection(4))

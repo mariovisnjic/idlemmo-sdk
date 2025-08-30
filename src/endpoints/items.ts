@@ -21,25 +21,26 @@ export const searchItem = async (params?: ItemSearchParams): Promise<{ items: It
     return await makeApiRequest('GET', `item/search?${queryParams.toString()}`);
 }
 
-export const inspectItem = async (hashedId: string): Promise<Item> => {
-    if (!hashedId) throw new Error('Item hashedId required')
-    const itemResponse = await makeApiRequest('GET', `item/${hashedId}/inspect`)
+export const inspectItem = async (hashed_id: string): Promise<Item> => {
+    if (!hashed_id) throw new Error('Item hashed_id required')
+    const itemResponse = await makeApiRequest('GET', `item/${hashed_id}/inspect`)
     return itemResponse.item;
 }
 
-export const itemMarketHistory = async (hashedId: string, {tier, type}: {
+export const itemMarketHistory = async (
+    hashed_id: string,
     tier: number,
     type: ItemMarketHistoryType
-}): Promise<{
+): Promise<{
     history_data: MarketHistoryData[];
     latest_sold: LatestSoldItem[];
 }> => {
-    if (!hashedId || !tier || !type) throw new Error('Item hashedId required')
+    if (!hashed_id || !tier || !type) throw new Error('Item hashed_id required')
 
     const queryParams = new URLSearchParams();
     if (tier) queryParams.append('tier', tier.toString());
     if (type) queryParams.append('type', type);
 
-    const itemResponse = await makeApiRequest('GET', `item/${hashedId}/market-history?${queryParams.toString()}`)
+    const itemResponse = await makeApiRequest('GET', `item/${hashed_id}/market-history?${queryParams.toString()}`)
     return {history_data: itemResponse.history_data, latest_sold: itemResponse.latest_sold};
 }

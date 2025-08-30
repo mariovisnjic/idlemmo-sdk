@@ -138,3 +138,86 @@ export interface LatestSoldItem {
     total_price: number;
     sold_at: string;
 }
+
+export interface Guild {
+    id: number;
+    name: string;
+    tag: string;
+    description: string | null;
+    experience: number;
+    level: number;
+    icon_url: string | null;
+    background_url: string | null;
+    member_count: number;
+    season_position: number | null;
+    marks: number;
+}
+
+
+export interface GuildBasic {
+    id: number;
+    name: string;
+    tag: string | null;
+    icon_url: string;
+    background_url?: string;
+}
+
+export interface ActiveAssault {
+    guild: GuildBasic;
+    kills: number;
+    experience: number;
+    starts_at: string;
+    ends_at: string;
+}
+
+export interface ZoneGuild {
+    id: number;
+    position: number;
+    kills: string;
+    experience: string;
+    contributions: null;
+    guild: GuildBasic;
+}
+
+export interface Zone {
+    location: {
+        id: number;
+        key: string;
+        name: string;
+        image_url: string;
+    };
+    contributions: null;
+    status: string;
+    colour: string | null;
+    kills: number;
+    experience: number;
+    guilds_count: number;
+    active_assaults: ActiveAssault[];
+    guilds: ZoneGuild[];
+}
+
+export interface ShrineProgressEffect {
+    target: string;
+    attribute: string;
+    value: number;
+    value_type: string;
+}
+
+export interface ShrineTier {
+    key: string;
+    name: string;
+}
+
+export interface ShrineProgressItem {
+    id: number;
+    tier: ShrineTier;
+    effects: ShrineProgressEffect[];
+    current_value: number;
+    target_value: number;
+    target_remaining: number;
+    percentage: number;
+    goal_reached_at: string | null;
+    is_active: boolean;
+    in_progress: boolean;
+    can_activate: boolean;
+}
