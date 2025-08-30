@@ -16,7 +16,7 @@ export function ensureInitialized(): void {
 /**
  * Make authenticated API request
  */
-export async function makeApiRequest(endpoint: string, options: RequestInit = {}): Promise<any> {
+export async function makeApiRequest(method: string, endpoint: string, options: RequestInit = {}): Promise<any> {
     ensureInitialized();
 
     const url = `${baseUrl}/${endpoint}`;
@@ -26,7 +26,12 @@ export async function makeApiRequest(endpoint: string, options: RequestInit = {}
         ...options.headers
     };
 
-    const response = await fetch(url, {headers})
+    console.log(url, method, headers, options)
+
+    const response = await fetch(url, {
+        method,
+        headers
+    })
     if (response.status === 400) {
         throw new Error('Bad Request: See error code for details.');
     }
