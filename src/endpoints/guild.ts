@@ -1,4 +1,4 @@
-import { makeApiRequest } from '../api.js';
+import {makeApiRequest} from '../api.js';
 import {Guild, Zone} from "../types.js";
 
 export const getGuildInformation = async (id: number): Promise<Guild> => {
