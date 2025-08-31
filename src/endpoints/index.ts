@@ -4,6 +4,16 @@ export { getDungeons, getWorldBosses, getEnemies } from './combat.js';
 export { inspectItem, itemMarketHistory, searchItem } from './items.js';
 
 export {
+    getCharacterInformation,
+    getCharacterMetrics,
+    getCharacterEffects,
+    getCharacterAltCharacters,
+    getCharacterMuseum,
+    getCharacterAction,
+    getCharacterPets
+} from './character.js';
+
+export {
     getGuildInformation,
     getGuildConquestView,
     getGuildConquestZoneInspection,

@@ -139,6 +139,142 @@ export interface LatestSoldItem {
     sold_at: string;
 }
 
+
+export interface Character {
+    id: number;
+    hashed_id: string;
+    name: string;
+    class: string;
+    image_url: string | null;
+    background_url: string | null;
+    skills: {
+        [key: string]: {
+            experience: number;
+            level: number;
+        };
+    };
+    stats: {
+        [key: string]: {
+            experience: number;
+            level: number;
+        };
+    };
+    gold: number;
+    tokens: number;
+    shards: number;
+    total_level: number;
+    equipped_pet: {
+        id: number;
+        name: string;
+        image_url: string | null;
+        level: number;
+    } | null;
+    guild: {
+        id: number;
+        tag: string;
+        experience: number;
+        level: number;
+        position: string;
+    } | null;
+    last_activity: string | null;
+    created_at: string;
+}
+
+export interface CharacterMetrics {
+    metrics: {
+        [key: string]: {
+            [key: string]: number;
+        };
+    };
+}
+
+export interface CharacterEffect {
+    character_id: number;
+    source: string;
+    target: string;
+    attribute: string;
+    value: number;
+    value_type: string;
+    location_id: number | null;
+    expire_at: string | null;
+}
+
+export interface AltCharacter {
+    id: number;
+    hashed_id: string;
+    name: string;
+    class: string;
+    image_url: string | null;
+    background_url: string | null;
+    total_level: number;
+    created_at: string;
+}
+
+export interface CharacterMuseumParams {
+    page?: number;
+    category?: "SKINS" | "BACKGROUNDS" | "GUILD_ICONS" | "PETS" | "COLLECTIBLES" | "BESTIARY";
+}
+
+export interface MuseumItem {
+    category: string;
+    quantity: number;
+    id: string | number;
+    name: string;
+    image_url: string | null;
+}
+
+export interface CharacterCurrentAction {
+    type: string | null;
+    image_url: string | null;
+    title: string | null;
+    expires_at: string | null;
+    started_at: string | null;
+}
+
+export interface CharacterPet {
+    id: number;
+    name: string;
+    custom_name: string | null;
+    pet_id: number;
+    pet_name: string;
+    image_url: string;
+    level: number;
+    experience: number;
+    quality: string;
+    stats: {
+        strength: number;
+        defence: number;
+        speed: number;
+    };
+    health: {
+        current: number;
+        maximum: number;
+        percentage: number;
+    };
+    happiness: {
+        current: number;
+        maximum: number;
+        percentage: number;
+    };
+    hunger: {
+        current: number;
+        maximum: number;
+        percentage: number;
+    };
+    equipped: boolean;
+    battle: {
+        started_at: string;
+        ends_at: string;
+    } | null;
+    location: {
+        id: number;
+        name: string;
+        locked: boolean;
+    };
+    created_at: string;
+}
+
+
 export interface Guild {
     id: number;
     name: string;
