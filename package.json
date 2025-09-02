@@ -1,7 +1,7 @@
 {
-  "name": "idlemmo",
+  "name": "idlemmo-sdk",
   "version": "0.0.1",
-  "description": "Unofficial IdleMMO API JS wrapper",
+  "description": "Unofficial IdleMMO API SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
