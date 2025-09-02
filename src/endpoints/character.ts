@@ -1,4 +1,4 @@
-import {configure, makeApiRequest} from '../api.js';
+import {makeApiRequest} from '../api.js';
 import {
     AltCharacter,
     Character, CharacterCurrentAction,
@@ -47,7 +47,6 @@ export const getCharacterAction = async (hashed_id: string): Promise<CharacterPe
     return await makeApiRequest('GET', `character/${hashed_id}/current-action`)
 }
 
-// UNSTABLE ENDPOINT!!!
 export const getCharacterPets = async (hashed_id: string): Promise<CharacterCurrentAction> => {
     const characterResponse = await makeApiRequest('GET', `character/${hashed_id}/pets`)
 
