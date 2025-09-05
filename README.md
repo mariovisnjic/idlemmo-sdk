@@ -24,10 +24,7 @@ npm install idlemmo-sdk
 import { configure } from 'idlemmo-js-wrapper';
 
 // Call this once during app startup
-configure({
-  baseUrl: 'https://api.example.com', // replace with actual API base
-  apiKey: 'YOUR_API_KEY_HERE'         // if required by your API setup
-});
+configure('YOUR_API_KEY_HERE');
 ```
 
 Then call any endpoint:
