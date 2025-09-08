@@ -8,6 +8,8 @@ A lightweight, promise-based TypeScript/JavaScript wrapper for the IdleMMO publi
 
 > **Note:** Some endpoints are marked **UNSTABLE** and may change without notice.
 
+> When in doubt consult official documentation at https://web.idle-mmo.com/settings/api
+
 ---
 
 ## Installation
