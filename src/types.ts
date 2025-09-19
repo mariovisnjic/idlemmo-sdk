@@ -176,8 +176,9 @@ export interface Character {
         level: number;
         position: string;
     } | null;
-    last_activity: string | null;
+    last_activity: string | null; // DEPRECATED
     created_at: string;
+    current_status: "ONLINE" | "IDLING" | "OFFLINE"
 }
 
 export interface CharacterMetrics {

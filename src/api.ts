@@ -26,8 +26,6 @@ export async function makeApiRequest(method: string, endpoint: string, options: 
         ...options.headers
     };
 
-    console.log(url, method, headers, options)
-
     const response = await fetch(url, {
         method,
         headers
