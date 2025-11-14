@@ -122,6 +122,7 @@ const action = await getCharacterAction('<character_hashed_id>');
 ```ts
 import {
   getGuildInformation,
+  getGuildMembers,  
   getGuildConquestView,
   getGuildConquestZoneInspection,
 } from 'idlemmo-js-wrapper';
@@ -138,6 +139,16 @@ import { getShrineProgress } from 'idlemmo-js-wrapper';
 
 const progress = await getShrineProgress();
 ```
+
+### Pets
+
+```ts
+import { getPetsExchangeListings } from 'idlemmo-js-wrapper';
+
+const { listings, pagination } = await getPetsExchangeListings();
+```
+
+
 
 ---
 
@@ -208,6 +219,14 @@ All functions return **Promises**.
 - **getGuildInformation(id: number): Promise<Guild>**
 - **getGuildConquestView(guildId: number): Promise<GuildConquestView>**
 - **getGuildConquestZoneInspection(guildId: number, zoneId: number): Promise<GuildConquestZoneInspection>**
+
+### Pets
+
+- **getPetsExchangeListings(): Promise<{ listings: PetExchangeMarketListing[]; pagination: Pagination }>**
+    - Params: none
+    - Returns:
+        - `listings`: list of pet exchange listings
+        - `pagination`: pagination info
 
 ### Shrine
 
