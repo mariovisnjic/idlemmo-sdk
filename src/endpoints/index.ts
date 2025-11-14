@@ -15,8 +15,13 @@ export {
 
 export {
     getGuildInformation,
+    getGuildMembers,
     getGuildConquestView,
     getGuildConquestZoneInspection,
 } from './guild.js';
+
+export {
+    getPetsExchangeListings
+} from './pets.js';
 
 export { getShrineProgress } from './shrine.js';

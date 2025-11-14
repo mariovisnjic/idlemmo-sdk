@@ -139,6 +139,21 @@ export interface LatestSoldItem {
     sold_at: string;
 }
 
+export interface PetExchangeMarketListing {
+    pet: {
+        character_pet_id: number;
+        pet_id: number;
+        name: string;
+        quality: string;
+        level: number;
+        image_url: string;
+    };
+    cost: {
+        currency: string;
+        amount: number;
+    };
+}
+
 
 export interface Character {
     id: number;

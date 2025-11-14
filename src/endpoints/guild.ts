@@ -6,6 +6,11 @@ export const getGuildInformation = async (id: number): Promise<Guild> => {
     const guildResponse = await makeApiRequest('GET', `guild/${id}/information`);
     return guildResponse.guild;
 }
+export const getGuildMembers = async (id: number): Promise<Guild> => {
+    if (!id) throw new Error('Guild ID is required');
+    const guildResponse = await makeApiRequest('GET', `guild/${id}/members`);
+    return guildResponse.members;
+}
 export const getGuildConquestView = async (season_number?: number): Promise<Record<string, Zone>> => {
     const queryParams = new URLSearchParams();
     if (season_number) queryParams.append('season_number', season_number.toString());
