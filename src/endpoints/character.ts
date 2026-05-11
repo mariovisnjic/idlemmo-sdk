@@ -43,11 +43,12 @@ export const getCharacterMuseum = async (hashed_id: string, params?: CharacterMu
 }
 
 // UNSTABLE ENDPOINT!!!
-export const getCharacterAction = async (hashed_id: string): Promise<CharacterPet[]> => {
+export const getCharacterAction = async (hashed_id: string): Promise<CharacterCurrentAction> => {
     return await makeApiRequest('GET', `character/${hashed_id}/current-action`)
 }
 
-export const getCharacterPets = async (hashed_id: string): Promise<CharacterCurrentAction> => {
+export const getCharacterPets = async (hashed_id: string): Promise<CharacterPet[]> => {
+    if (!hashed_id) throw new Error('Character hashed_id required')
     const characterResponse = await makeApiRequest('GET', `character/${hashed_id}/pets`)
 
     return characterResponse.pets;

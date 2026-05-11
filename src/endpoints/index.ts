@@ -16,6 +16,8 @@ export {
 export {
     getGuildInformation,
     getGuildMembers,
+    getGuildEnergizingPool,
+    getGuildHall,
     getGuildConquestView,
     getGuildConquestZoneInspection,
 } from './guild.js';
@@ -25,3 +27,5 @@ export {
 } from './pets.js';
 
 export { getShrineProgress } from './shrine.js';
+
+export { getWorldLocations } from './world.js';

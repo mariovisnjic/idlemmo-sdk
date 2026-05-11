@@ -46,9 +46,13 @@ import {
   getCharacterAction,      // UNSTABLE
   getCharacterPets,
   getGuildInformation,
+  getGuildMembers,
+  getGuildEnergizingPool,
+  getGuildHall,
   getGuildConquestView,
   getGuildConquestZoneInspection,
   getShrineProgress,
+  getWorldLocations,
 } from 'idlemmo-js-wrapper';
 
 (async () => {
@@ -122,14 +126,28 @@ const action = await getCharacterAction('<character_hashed_id>');
 ```ts
 import {
   getGuildInformation,
-  getGuildMembers,  
+  getGuildMembers,
+  getGuildEnergizingPool,
+  getGuildHall,
   getGuildConquestView,
   getGuildConquestZoneInspection,
 } from 'idlemmo-js-wrapper';
 
 const guild = await getGuildInformation(12345);
+const members = await getGuildMembers(12345);     // members now include `hashed_id`
+const pool = await getGuildEnergizingPool(12345);
+const hall = await getGuildHall(12345);
 const conquest = await getGuildConquestView(12345);
 const zone = await getGuildConquestZoneInspection(12345, 7);
+```
+
+### World
+
+```ts
+import { getWorldLocations } from 'idlemmo-js-wrapper';
+
+// All dates in the forecast are UTC.
+const locations = await getWorldLocations();
 ```
 
 ### Shrine
@@ -212,13 +230,20 @@ All functions return **Promises**.
 - **getCharacterAltCharacters(hashed_id: string): Promise<AltCharacter[]>**
 - **getCharacterMuseum(hashed_id: string, params?: CharacterMuseumParams): Promise<{ items: MuseumItem[]; pagination: Pagination }>**
 - **getCharacterAction(hashed_id: string): Promise<CharacterCurrentAction>** *(UNSTABLE)*
-- **getCharacterPets(hashed_id: string): Promise<CharacterPet[]>**
+- **getCharacterPets(hashed_id: string): Promise<CharacterPet[]>** — each pet now includes `total_experience` and a full stat breakdown (`agility`, `accuracy`, `protection`, `max_stamina`, `attack_power`, `movement_speed`, `critical_chance`, `critical_damage`, plus `strength`, `defence`, `speed`)
 
 ### Guild
 
 - **getGuildInformation(id: number): Promise<Guild>**
-- **getGuildConquestView(guildId: number): Promise<GuildConquestView>**
-- **getGuildConquestZoneInspection(guildId: number, zoneId: number): Promise<GuildConquestZoneInspection>**
+- **getGuildMembers(id: number): Promise<GuildMember[]>** — each member includes `hashed_id`
+- **getGuildEnergizingPool(id: number): Promise<GuildEnergizingPoolResponse>**
+- **getGuildHall(id: number): Promise<GuildHall>**
+- **getGuildConquestView(season_number?: number): Promise<Record<string, Zone>>**
+- **getGuildConquestZoneInspection(zone_id: number, season_number?: number): Promise<Zone>**
+
+### World
+
+- **getWorldLocations(): Promise<WorldLocation[]>** — locations with weather forecast (dates in UTC)
 
 ### Pets
 
@@ -263,9 +288,22 @@ import type {
   WorldBoss,
   Enemy,
   Guild,
+  GuildMember,
+  GuildMembersResponse,
+  GuildEnergizingPool,
+  GuildEnergizingPoolResponse,
+  GuildHall,
+  GuildHallBlueprint,
+  GuildHallUpgrade,
+  GuildHallSlots,
   GuildConquestView,
   GuildConquestZoneInspection,
-  ShrineProgressItem
+  ShrineProgressItem,
+  WorldLocation,
+  WeatherForecastDay,
+  WeatherWindow,
+  PetStats,
+  PetEvolution
 } from 'idlemmo-js-wrapper';
 ```
 

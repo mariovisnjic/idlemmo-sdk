@@ -247,32 +247,47 @@ export interface CharacterCurrentAction {
     started_at: string | null;
 }
 
+export interface PetStats {
+    strength: number;
+    defence: number;
+    speed: number;
+    agility: number;
+    accuracy: number;
+    protection: number;
+    max_stamina: number;
+    attack_power: number;
+    movement_speed: number;
+    critical_chance: number;
+    critical_damage: number;
+}
+
+export interface PetEvolutionTarget {
+    key: string;
+    label: string;
+}
+
+export interface PetEvolution {
+    state: number;
+    max: number;
+    bonus_per_stage: number;
+    current_bonus: number;
+    next_bonus: number;
+    can_evolve: boolean;
+    targets: PetEvolutionTarget[];
+}
+
 export interface CharacterPet {
     id: number;
     name: string;
     custom_name: string | null;
     pet_id: number;
-    pet_name: string;
     image_url: string;
     level: number;
     experience: number;
+    total_experience: number;
     quality: string;
-    stats: {
-        strength: number;
-        defence: number;
-        speed: number;
-    };
+    stats: PetStats;
     health: {
-        current: number;
-        maximum: number;
-        percentage: number;
-    };
-    happiness: {
-        current: number;
-        maximum: number;
-        percentage: number;
-    };
-    hunger: {
         current: number;
         maximum: number;
         percentage: number;
@@ -282,9 +297,10 @@ export interface CharacterPet {
         started_at: string;
         ends_at: string;
     } | null;
+    evolution: PetEvolution;
     location: {
-        id: number;
-        name: string;
+        id: number | null;
+        name: string | null;
         locked: boolean;
     };
     created_at: string;
@@ -372,4 +388,141 @@ export interface ShrineProgressItem {
     is_active: boolean;
     in_progress: boolean;
     can_activate: boolean;
+}
+
+export interface GuildMember {
+    hashed_id: string;
+    name: string;
+    position: string;
+    avatar_url: string;
+    background_url: string;
+    total_level: number;
+}
+
+export interface GuildMembersResponse {
+    guild: {
+        id: number;
+        name: string;
+        member_count: number;
+    };
+    members: GuildMember[];
+}
+
+export interface GuildEnergizingPool {
+    id: number | null;
+    status: "DORMANT" | "ACTIVE" | string;
+    ends_at: string | null;
+    effects: string[];
+}
+
+export interface GuildEnergizingPoolResponse {
+    guild: {
+        id: number;
+        name: string;
+    };
+    energizing_pool: GuildEnergizingPool;
+}
+
+export interface GuildHallBlueprintItem {
+    id: number;
+    name: string;
+    image_url: string;
+}
+
+export interface GuildHallBlueprintRequirement {
+    item: GuildHallBlueprintItem;
+    quantity: {
+        needed: number;
+        current: number;
+    };
+}
+
+export interface GuildHallBlueprintLength {
+    raw: number;
+    readable: string;
+}
+
+export interface GuildHallBlueprint {
+    id: number;
+    key: string;
+    name: string;
+    type: "CREATION" | "SLOT" | "COMPONENT" | string;
+    level_needed: number | null;
+    is_available: boolean;
+    image_url: string;
+    description: string;
+    cost: number;
+    length: GuildHallBlueprintLength;
+    requirements: GuildHallBlueprintRequirement[];
+    is_replacement: boolean;
+    replaces_blueprint_id: number | null;
+    benefits: string[];
+}
+
+export interface GuildHallUpgradeStatus {
+    key: string;
+    readable: string;
+}
+
+export interface GuildHallUpgradeRepair {
+    condition_percentage: string;
+    can_repair: boolean;
+    blueprint: GuildHallBlueprint;
+}
+
+export interface GuildHallUpgrade {
+    id: number;
+    blueprint: GuildHallBlueprint;
+    status: GuildHallUpgradeStatus;
+    repair: GuildHallUpgradeRepair | null;
+    available_upgrade: GuildHallBlueprint | null;
+    ends_at: string | null;
+    ends_in: string | null;
+}
+
+export interface GuildHallSlots {
+    total: number;
+    free: number;
+    occupied: number;
+    remaining: number;
+}
+
+export interface GuildHall {
+    id: number;
+    name: string;
+    location: {
+        id: number;
+        name: string;
+    };
+    slots: GuildHallSlots;
+    upgrades: GuildHallUpgrade[];
+    blueprints: GuildHallBlueprint[];
+}
+
+export interface WeatherWindow {
+    key: string;
+    icon: string;
+    name: string;
+    window: string;
+    starts_at: string;
+    starts_at_time: string;
+    ends_at: string;
+    buffs: string[];
+}
+
+export interface WeatherForecastDay {
+    day_name: string;
+    date: string;
+    weathers: WeatherWindow[];
+}
+
+export interface WorldLocation {
+    id: number;
+    name: string;
+    key: string;
+    description: string;
+    image_url: string;
+    x: number;
+    y: number;
+    forecast: WeatherForecastDay[];
 }
